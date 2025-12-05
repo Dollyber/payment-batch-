@@ -49,10 +49,7 @@ public class PaymentApiClient {
             throw ex;
 
         } catch (Exception ex) {
-            throw new RuntimeException(
-                    "Error inesperado al ejecutar la llamada al API de pagos: " + ex.getMessage(),
-                    ex
-            );
+            throw ex;
         }
 
     }
