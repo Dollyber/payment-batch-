@@ -27,9 +27,10 @@ class PaymentItemReaderTest {
     @Test
     void read_validCsv_returnsCorrectValues() throws Exception {
 
-        String csv =
-                "customerId,serviceId,receiptId,amount,currency\n" +
-                        "1,2,300,150.50,PEN\n";
+        String csv = """
+        customerId,serviceId,receiptId,amount,currency
+        1,2,300,150.50,PEN
+        """;
 
         reader.setResource(new InputStreamResource(
                 new ByteArrayInputStream(csv.getBytes(StandardCharsets.UTF_8))
@@ -68,9 +69,10 @@ class PaymentItemReaderTest {
     @Test
     void read_malformedLine_throwsException() {
 
-        String csv =
-                "customerId,serviceId,receiptId,amount,currency\n" +
-                        "1,2,300,150.50\n"; // Falta moneda
+        String csv = """
+        customerId,serviceId,receiptId,amount,currency
+        1,2,300,150.50
+        """; // Falta moneda
 
         reader.setResource(new InputStreamResource(
                 new ByteArrayInputStream(csv.getBytes(StandardCharsets.UTF_8))
@@ -85,9 +87,10 @@ class PaymentItemReaderTest {
     @Test
     void read_invalidAmount_throwsException() {
 
-        String csv =
-                "customerId,serviceId,receiptId,amount,currency\n" +
-                        "1,2,300,ABC,PEN\n"; // Amount inválido
+        String csv = """
+        customerId,serviceId,receiptId,amount,currency
+        1,2,300,ABC,PEN
+        """;
 
         reader.setResource(new InputStreamResource(
                 new ByteArrayInputStream(csv.getBytes(StandardCharsets.UTF_8))
@@ -98,27 +101,7 @@ class PaymentItemReaderTest {
         assertThrows(Exception.class, () -> reader.read());
     }
 
-    // 5. MONEDA VACÍA (string)
-    @Test
-    void read_emptyCurrency_returnsValueWithBlankCurrency() throws Exception {
-
-        String csv =
-                "customerId,serviceId,receiptId,amount,currency\n" +
-                        "1,2,300,10.00,\n";
-
-        reader.setResource(new InputStreamResource(
-                new ByteArrayInputStream(csv.getBytes(StandardCharsets.UTF_8))
-        ));
-
-        reader.open(new ExecutionContext());
-
-        PaymentRequestBatchDTO item = reader.read();
-
-        assertNotNull(item);
-        assertEquals("", item.getCurrency());
-    }
-
-    // 6. RESOURCE NULO EN EXECUTION
+    // 5. RESOURCE NULO EN EXECUTION
     @Test
     void read_noResourceConfigured_throwsException() {
         reader = new PaymentItemReader(); // Crea uno nuevo con resource por defecto

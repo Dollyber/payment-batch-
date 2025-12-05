@@ -8,9 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 @Component
 public class PaymentJobCompletionListener implements JobExecutionListener {
+
+    Logger logger = Logger.getLogger(getClass().getName());
 
     @Override
     public void afterJob(JobExecution jobExecution) {
@@ -21,12 +24,11 @@ public class PaymentJobCompletionListener implements JobExecutionListener {
         try {
             Files.createDirectories(archive.getParent()); // crear carpeta archive si no existe
             Files.move(report, archive);
-            System.out.println("Reporte archivado: " + archive.toString());
         } catch (IOException e) {
-            System.out.println("No se pudo archivar el reporte: " + e.getMessage());
+            logger.info("No se pudo archivar el reporte: " + e.getMessage());
         }
 
-        System.out.println("===== Payment Batch Finished =====");
+        logger.info("===== Payment Batch Finished =====");
     }
 
 }

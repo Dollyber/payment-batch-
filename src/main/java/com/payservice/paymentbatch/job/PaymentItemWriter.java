@@ -31,7 +31,6 @@ public class PaymentItemWriter implements ItemWriter<PaymentBatchReportDTO> {
 
     @Override
     public void write(Chunk<? extends PaymentBatchReportDTO> chunk) throws Exception {
-        System.out.println(">>> WRITER RECIBIÓ " + chunk.size() + " ITEMS");
 
         for (PaymentBatchReportDTO r : chunk.getItems()) {
 

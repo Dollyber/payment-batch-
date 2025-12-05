@@ -41,11 +41,6 @@ class PaymentItemProcessorTest {
 
     @BeforeEach
     void setup() {
-        item = new PaymentRequestBatchDTO(
-                1, 10, 100,
-                new BigDecimal("50.00"),
-                "PEN"
-        );
 
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -170,7 +165,6 @@ class PaymentItemProcessorTest {
         // 5. Ejecutar processor
         PaymentBatchReportDTO result = processor.process(item);
 
-        // 6. Verificar que entró al PRIMER catch (parse exitoso)
         assertEquals("REJECTED", result.getBatchStatus());
         assertNull(result.getReceipt());
         assertEquals("400 - RN1: Only PEN or USD allowed", result.getReason());
