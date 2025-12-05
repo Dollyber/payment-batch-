@@ -1,6 +1,5 @@
 package com.payservice.paymentbatch.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payservice.paymentbatch.dto.PaymentResponseDTO;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +14,9 @@ import java.util.Map;
 public class PaymentApiClient {
 
     private final RestTemplate restTemplate; // Clase de Spring para hacer llamadas HTTP a APIs externas.
-    //private final ObjectMapper objectMapper; // Convertir objetos Java a JSON
 
     public PaymentApiClient(RestTemplateBuilder builder) {
         this.restTemplate = builder.build();
-        //this.objectMapper = objectMapper;
     }
 
     // Este metodo llama al API de pagos y devuelve la respuesta como un objeto Java

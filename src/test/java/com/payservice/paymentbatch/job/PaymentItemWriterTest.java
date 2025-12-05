@@ -15,31 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentItemWriterTest {
 
-    /*private PaymentItemWriter writer;
-    private Path tempDir;
-    private Path tempFile;
-
-    @BeforeEach
-    void setUp() throws Exception {
-        writer = new PaymentItemWriter();
-
-        // Crear directorio temporal
-        tempDir = Files.createTempDirectory("batch-writer-test");
-
-        System.out.println("TEMP DIR: " + tempDir.toAbsolutePath());
-
-        // Crear archivo temporal que reemplazará al real
-        tempFile = tempDir.resolve("payment-report.csv");
-
-        // Inyectar el path temporal en el writer usando reflection
-        Field outputPathField = PaymentItemWriter.class.getDeclaredField("outputPath");
-        outputPathField.setAccessible(true);
-        outputPathField.set(writer, tempFile);
-
-        // Ejecutar init() manualmente porque no hay Spring
-        writer.init();
-    }*/
-
     private PaymentItemWriter writer;
     private Path testDir;
     private Path testFile;
