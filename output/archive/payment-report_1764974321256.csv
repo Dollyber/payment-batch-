@@ -1,0 +1,14 @@
+customerId,serviceId,receiptId,attemptedAmount,receiptNumber,periodLabel,receiptAmount,pendingAmount,currency,paymentStatus,batchStatus,reason
+1,1,2001,100.00,,,0.00,0.00,,null,REJECTED,400 - RN5: Receipt already PAID; no further payments allowed
+1,2,2003,100.00,,,0.00,0.00,,null,REJECTED,409 - Previous receipts are unpaid
+2,3,2004,10.00,,,0.00,0.00,,null,REJECTED,400 - RN5: Receipt already PAID; no further payments allowed
+2,3,2005,30.00,,,0.00,0.00,,null,REJECTED,400 - RN5: Receipt already PAID; no further payments allowed
+2,3,2006,50.00,,,0.00,0.00,,null,REJECTED,400 - RN1: Only PEN or USD allowed
+1,1,9999,50.00,,,0.00,0.00,,null,REJECTED,404 - Receipt not found
+2,4,2007,100.00,,,0.00,0.00,,null,REJECTED,404 - Receipt does not belong to customer
+1,1,2008,70.00,,,0.00,0.00,,null,REJECTED,409 - Previous receipts are unpaid
+1,1,2009,50.00,,,0.00,0.00,,null,REJECTED,400 - RN5: Receipt already PAID; no further payments allowed
+1,1,3001,20.00,,,0.00,0.00,,null,REJECTED,422 - RN3: Payment exceeds pending amount
+1,1,3002,40.00,,,0.00,0.00,,null,REJECTED,422 - RN3: Payment exceeds pending amount
+1,1,3003,100.00,,,0.00,0.00,,null,REJECTED,422 - RN3: Payment exceeds pending amount
+1,1,3004,200.00,,,0.00,0.00,,null,REJECTED,422 - RN3: Payment exceeds pending amount
