@@ -43,17 +43,10 @@ public class PaymentApiClient {
             return response.getBody();
 
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
-            throw new RuntimeException(
-                    "Error HTTP al llamar al API de pagos. Status=" + ex.getStatusCode() +
-                            ", Body=" + ex.getResponseBodyAsString(),
-                    ex
-            );
+            throw ex;
 
         } catch (ResourceAccessException ex) {
-            throw new RuntimeException(
-                    "Error de conexión al intentar contactar el API de pagos: " + ex.getMessage(),
-                    ex
-            );
+            throw ex;
 
         } catch (Exception ex) {
             throw new RuntimeException(
