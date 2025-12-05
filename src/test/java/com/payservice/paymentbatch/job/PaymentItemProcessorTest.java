@@ -37,7 +37,6 @@ class PaymentItemProcessorTest {
     @InjectMocks
     private PaymentItemProcessor processor;
 
-    private PaymentRequestBatchDTO item;
 
     @BeforeEach
     void setup() {

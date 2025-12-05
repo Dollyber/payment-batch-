@@ -9,14 +9,12 @@ import org.springframework.web.client.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Component
 public class PaymentApiClient {
 
     private final RestTemplate restTemplate; // Clase de Spring para hacer llamadas HTTP a APIs externas.
 
-    Logger logger = Logger.getLogger(getClass().getName());
 
     public PaymentApiClient(RestTemplateBuilder builder) {
         this.restTemplate = builder.build();
@@ -45,17 +43,25 @@ public class PaymentApiClient {
             return response.getBody();
 
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
-            logger.info("ERROR HTTP: " + ex.getStatusCode() + " - " + ex.getResponseBodyAsString());
-            throw ex;
+            throw new RuntimeException(
+                    "Error HTTP al llamar al API de pagos. Status=" + ex.getStatusCode() +
+                            ", Body=" + ex.getResponseBodyAsString(),
+                    ex
+            );
 
         } catch (ResourceAccessException ex) {
-            logger.info("ERROR de conexión: " + ex.getMessage());
-            throw ex;
+            throw new RuntimeException(
+                    "Error de conexión al intentar contactar el API de pagos: " + ex.getMessage(),
+                    ex
+            );
 
         } catch (Exception ex) {
-            logger.info("ERROR desconocido: " + ex.getMessage());
-            throw ex;
+            throw new RuntimeException(
+                    "Error inesperado al ejecutar la llamada al API de pagos: " + ex.getMessage(),
+                    ex
+            );
         }
+
     }
 
 }
